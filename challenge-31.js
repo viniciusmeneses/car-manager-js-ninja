@@ -37,6 +37,8 @@
   */
 
   var app = (function() {
+    var $tableCarros = $('[data-js="tableCarros"]').get();
+
     return {
       init: function() {
         //O this aqui representa o objeto que está sendo retornado, por isso é possível acessar o método loadCompany a partir dele
@@ -49,7 +51,6 @@
       handleSubmit: function(e) {
         e.preventDefault();
         //this aqui vai referenciar o form
-        var $tableCarros = $('[data-js="tableCarros"]').get();
         $tableCarros.appendChild(app.createNewCar());
       },
       createNewCar: function() {
@@ -61,20 +62,34 @@
         var $tdAno = doc.createElement('td');
         var $tdPlaca = doc.createElement('td');
         var $tdCor = doc.createElement('td');
+        var $tdBtnRemover = doc.createElement('td');
 
         $tdImg.appendChild(this.createImage());
         $tdMarcaModelo.textContent = this.getInputValue('formMarcaModelo');
         $tdAno.textContent = this.getInputValue('formAno');
         $tdPlaca.textContent = this.getInputValue('formPlaca');
         $tdCor.textContent = this.getInputValue('formCor');
+        $tdBtnRemover.appendChild(this.createBtnRemove());
         
         $tr.appendChild($tdImg);
         $tr.appendChild($tdMarcaModelo);
         $tr.appendChild($tdAno);
         $tr.appendChild($tdPlaca);
         $tr.appendChild($tdCor);
+        $tr.appendChild($tdBtnRemover);
 
         return $fragment.appendChild($tr);
+      },
+      createBtnRemove: function() {
+        var $btnRemove = doc.createElement('button');
+        $btnRemove.type = 'button';
+        $btnRemove.textContent = 'Remover';
+        $btnRemove.addEventListener('click', this.handleBtnRemove, false);
+        return $btnRemove;
+      },
+      handleBtnRemove: function() {
+        var $trBtnNode = this.parentNode.parentNode;
+        $tableCarros.removeChild($trBtnNode);
       },
       getInputValue: function(element) {
         return $(`[data-js="${element}"]`).get().value;
