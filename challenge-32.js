@@ -1,59 +1,35 @@
 (function(win, doc, $) {
   'use strict';
-
-  /*
-  Vamos estruturar um pequeno app utilizando módulos.
-  Nosso APP vai ser um cadastro de carros. Vamos fazê-lo por partes.
-  A primeira etapa vai ser o cadastro de veículos, de deverá funcionar da
-  seguinte forma:
-  - No início do arquivo, deverá ter as informações da sua empresa - nome e
-  telefone (já vamos ver como isso vai ser feito)
-  - Ao abrir a tela, ainda não teremos carros cadastrados. Então deverá ter
-  um formulário para cadastro do carro, com os seguintes campos:
-    - Imagem do carro (deverá aceitar uma URL)
-    - Marca / Modelo
-    - Ano
-    - Placa
-    - Cor
-    - e um botão "Cadastrar"
-
-  Logo abaixo do formulário, deverá ter uma tabela que irá mostrar todos os
-  carros cadastrados. Ao clicar no botão de cadastrar, o novo carro deverá
-  aparecer no final da tabela.
-
-  Agora você precisa dar um nome para o seu app. Imagine que ele seja uma
-  empresa que vende carros. Esse nosso app será só um catálogo, por enquanto.
-  Dê um nome para a empresa e um telefone fictício, preechendo essas informações
-  no arquivo company.json que já está criado.
-
-  Essas informações devem ser adicionadas no HTML via Ajax.
-
-  Parte técnica:
-  Separe o nosso módulo de DOM criado nas últimas aulas em
-  um arquivo DOM.js.
-
-  E aqui nesse arquivo, faça a lógica para cadastrar os carros, em um módulo
-  que será nomeado de "app".
-  */
-
   var app = (function() {
-    var $tableCarros = $('[data-js="tableCarros"]').get();
+    var $tableCarrosBody = $('[data-js="tableCarrosBody"]').get();
 
     return {
       init: function() {
         //O this aqui representa o objeto que está sendo retornado, por isso é possível acessar o método loadCompany a partir dele
         this.loadCompany();
         this.initEvents();
+        this.loadCars();
       },
       initEvents: function() {
         $('[data-js="formSubmit"]').on('submit', this.handleSubmit);
       },
-      handleSubmit: function(e) {
-        e.preventDefault();
-        //this aqui vai referenciar o form
-        $tableCarros.appendChild(app.createNewCar());
+      loadCars: function() {
+        $tableCarrosBody.innerHTML = '';
+
+        var ajax = new XMLHttpRequest();
+        ajax.open('GET', 'http://localhost:3000/car');
+        ajax.send();
+
+        ajax.onreadystatechange = function() {
+          if (app.isReady.call(this)) {
+            var parsedCars = JSON.parse(this.responseText);
+            parsedCars.forEach(function(car) {
+              $tableCarrosBody.appendChild(app.loadNewCar(car));
+            });
+          }
+        }
       },
-      createNewCar: function() {
+      loadNewCar: function(car) {
         var $fragment = doc.createDocumentFragment();
         var $tr = doc.createElement('tr');
 
@@ -64,11 +40,11 @@
         var $tdCor = doc.createElement('td');
         var $tdBtnRemover = doc.createElement('td');
 
-        $tdImg.appendChild(this.createImage());
-        $tdMarcaModelo.textContent = this.getInputValue('formMarcaModelo');
-        $tdAno.textContent = this.getInputValue('formAno');
-        $tdPlaca.textContent = this.getInputValue('formPlaca');
-        $tdCor.textContent = this.getInputValue('formCor');
+        $tdImg.appendChild(this.createImage(car.image));
+        $tdMarcaModelo.textContent = car.brandModel;
+        $tdAno.textContent = car.year;
+        $tdPlaca.textContent = car.plate;
+        $tdCor.textContent = car.color;
         $tdBtnRemover.appendChild(this.createBtnRemove());
         
         $tr.appendChild($tdImg);
@@ -80,6 +56,24 @@
 
         return $fragment.appendChild($tr);
       },
+      createPostString: function() {
+        return `image=${this.getInputValue('formUrl')}&brandModel=${this.getInputValue('formMarcaModelo')}&year=${this.getInputValue('formAno')}&plate=${this.getInputValue('formPlaca')}&color=${this.getInputValue('formCor')}`;
+      },
+      handleSubmit: function(e) {
+        e.preventDefault();
+
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', 'http://localhost:3000/car');
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        ajax.send(app.createPostString());
+        ajax.addEventListener('readystatechange', app.handleAjaxPost, false);
+      },
+      handleAjaxPost: function() {
+        if (app.isReady.call(this)) {
+          console.log('Status POST:', this.responseText);
+          app.loadCars();
+        }
+      },
       createBtnRemove: function() {
         var $btnRemove = doc.createElement('button');
         $btnRemove.type = 'button';
@@ -89,14 +83,14 @@
       },
       handleBtnRemove: function() {
         var $trBtnNode = this.parentNode.parentNode;
-        $tableCarros.removeChild($trBtnNode);
+        $tableCarrosBody.removeChild($trBtnNode);
       },
       getInputValue: function(element) {
         return $(`[data-js="${element}"]`).get().value;
       },
-      createImage: function() {
+      createImage: function(url) {
         var $image = doc.createElement('img');
-        $image.src = this.getInputValue('formUrl');
+        $image.src = url;
         return $image;
       },
       loadCompany: function() {

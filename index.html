@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title>Sistema Carros</title>
 </head>
+
 <body>
   <div>
     <h2>Informações da Empresa</h2>
@@ -15,15 +17,15 @@
     <h2>Cadastrar Veículo</h2>
     <form data-js="formSubmit">
       <h4>Foto do Carro (URL):</h4>
-      <input type="url" data-js="formUrl"/>
+      <input type="url" data-js="formUrl" />
       <h4>Marca / Modelo:</h4>
-      <input type="text" data-js="formMarcaModelo"/>
+      <input type="text" data-js="formMarcaModelo" />
       <h4>Ano:</h4>
-      <input type="number" data-js="formAno"/>
+      <input type="number" data-js="formAno" />
       <h4>Placa:</h4>
-      <input type="text" data-js="formPlaca"/>
+      <input type="text" data-js="formPlaca" />
       <h4>Cor:</h4>
-      <input type="text" data-js="formCor"/>
+      <input type="text" data-js="formCor" />
       <br/>
       <br/>
       <button type="submit">Cadastrar</button>
@@ -31,31 +33,36 @@
   </div>
   <br/>
   <div>
-    <table data-js="tableCarros">
-      <tr>
-        <th>
-          Foto
-        </th>
-        <th>
-          Marca / Modelo
-        </th>
-        <th>
-          Ano
-        </th>
-        <th>
-          Placa
-        </th>
-        <th>
-          Cor
-        </th>
-        <th>
-          Ação
-        </th>
-      </tr>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Foto
+          </th>
+          <th>
+            Marca / Modelo
+          </th>
+          <th>
+            Ano
+          </th>
+          <th>
+            Placa
+          </th>
+          <th>
+            Cor
+          </th>
+          <th>
+            Ação
+          </th>
+        </tr>
+      </thead>
+      <tbody data-js="tableCarrosBody">
+      </tbody>
     </table>
   </div>
 
   <script src="dom.js"></script>
-  <script src="challenge-31.js"></script>
+  <script src="challenge-32.js"></script>
 </body>
+
 </html>
