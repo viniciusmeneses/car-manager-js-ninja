@@ -19,7 +19,6 @@
         var ajax = new XMLHttpRequest();
         ajax.open('GET', 'http://localhost:3000/car');
         ajax.send();
-
         ajax.onreadystatechange = function() {
           if (app.isReady.call(this)) {
             var parsedCars = JSON.parse(this.responseText);
@@ -66,13 +65,7 @@
         ajax.open('POST', 'http://localhost:3000/car');
         ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         ajax.send(app.createPostString());
-        ajax.addEventListener('readystatechange', app.handleAjaxPost, false);
-      },
-      handleAjaxPost: function() {
-        if (app.isReady.call(this)) {
-          console.log('Status POST:', this.responseText);
-          app.loadCars();
-        }
+        ajax.addEventListener('readystatechange', app.handleAjax, false);
       },
       createBtnRemove: function() {
         var $btnRemove = doc.createElement('button');
@@ -82,8 +75,17 @@
         return $btnRemove;
       },
       handleBtnRemove: function() {
-        var $trBtnNode = this.parentNode.parentNode;
-        $tableCarrosBody.removeChild($trBtnNode);
+        var ajax = new XMLHttpRequest();
+        ajax.open('DELETE', 'http://localhost:3000/car');
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        ajax.send(`plate=${this.parentNode.parentNode.children[3].textContent}`);
+        ajax.addEventListener('readystatechange', app.handleAjax, false);
+      },
+      handleAjax: function() {
+        if (app.isReady.call(this)) {
+          console.log(`Status:`, JSON.parse(this.responseText).message);
+          app.loadCars();
+        }
       },
       getInputValue: function(element) {
         return $(`[data-js="${element}"]`).get().value;
