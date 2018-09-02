@@ -12,17 +12,14 @@ This conclusion project was developed with the knowledge obtained along 33 modul
 
 - Express
 
-
+  
 
 ## Installing and Running:
 
 Clone this repository, open your terminal in project root folder and run the following commands:
 
-```powershell
-//Installs the dependencies
+```
 npm install
-
-//Starts the app
 npm run app
 ```
 
