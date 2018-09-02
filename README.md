@@ -1,4 +1,4 @@
-# :car: car-manager-js-ninja
+# car-manager-js-ninja
 
 **Car Manager is a management system to be used in a car dealership.**
 
