@@ -3,66 +3,62 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Sistema Carros</title>
+  <title>Car Manager</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
 <body>
-  <div>
-    <h2>Informações da Empresa</h2>
-    <p><b>Nome: </b><span data-js="companyNome"></span></p>
-    <p><b>Telefone: </b><span data-js="companyTelefone"></span></p>
-  </div>
-  <br/>
-  <div>
-    <h2>Cadastrar Veículo</h2>
-    <form data-js="formSubmit">
-      <h4>Foto do Carro (URL):</h4>
-      <input type="url" data-js="formUrl" />
-      <h4>Marca / Modelo:</h4>
-      <input type="text" data-js="formMarcaModelo" />
-      <h4>Ano:</h4>
-      <input type="number" data-js="formAno" />
-      <h4>Placa:</h4>
-      <input type="text" data-js="formPlaca" />
-      <h4>Cor:</h4>
-      <input type="text" data-js="formCor" />
-      <br/>
-      <br/>
-      <button type="submit">Cadastrar</button>
-    </form>
-  </div>
-  <br/>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>
-            Foto
-          </th>
-          <th>
-            Marca / Modelo
-          </th>
-          <th>
-            Ano
-          </th>
-          <th>
-            Placa
-          </th>
-          <th>
-            Cor
-          </th>
-          <th>
-            Ação
-          </th>
-        </tr>
-      </thead>
-      <tbody data-js="tableCarrosBody">
-      </tbody>
-    </table>
-  </div>
+  <header>
+    <div>
+      <h2 data-js="companyName"></h2><h2 data-js="companyPhone"></h2>
+    </div>
+  </header>
 
-  <script src="dom.js"></script>
-  <script src="challenge-33.js"></script>
+  <section>
+    <div class="divForm">
+      <div>
+        <form data-js="formSubmit">
+          <label>Photo (URL):</label>
+          <input type="url" data-js="formUrl" />
+          <label>Brand / Model:</label>
+          <input type="text" data-js="formBrandModel" />
+          <label>Year:</label>
+          <input type="number" data-js="formYear" />
+          <label>Plate:</label>
+          <input type="text" data-js="formPlate" />
+          <label>Color:</label>
+          <input type="text" data-js="formColor" />
+          <div class="divBtn">
+            <button type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="divTable">
+      <table>
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>Brand / Model</th>
+            <th>Year</th>
+            <th>Plate</th>
+            <th>Color</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody data-js="tableBodyCars"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <span>Conclusion project of course <a href="https://www.udemy.com/curso-javascript-ninja/">Javascript Ninja</a> developed by <a href="https://github.com/vini23hot/">Vinicius Meneses</a></span>
+    </div>
+  </footer>
+  <script src="js/min/dom.min.js"></script>
+  <script src="js/min/main.min.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,108 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+h2[data-js="companyPhone"], h2[data-js="companyName"] {
+  display: inline;
+}
+header {
+  text-align: center;
+  padding: 25px;
+  color: #FAF6F6;
+}
+footer {
+  text-align: center;
+  color: #FAF6F6;
+  padding: 30px;
+}
+footer > div > span {
+  font-size: 12px;
+  color: #4f48a0;
+}
+footer > div > span > a {
+  text-decoration: none;
+  color: #6a65a3;
+}
+body, html {
+  background: linear-gradient(to top, #0f0c29, #302b63, #24243e);
+  margin: 0;
+  height: 100%;
+  background-attachment: fixed;
+}
+section {
+  border: 3px solid rgb(221, 221, 221);
+  border-radius: 20px;
+  margin: 0 100px 0px 100px;
+  padding: 30px;
+  background-color: #FAF6F6;
+  display: flex;
+}
+.titleForm {
+  text-align: center;
+}
+label {
+  display: block;
+  padding-bottom: 5px;
+}
+input {
+  border-radius: 4px;
+  border: 1px solid #b6b6b6;
+  height: 30px;
+  padding: 0 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  width: calc(100% - 12px);
+}
+.divBtn {
+  text-align: center;
+  width: 100%;
+}
+.divBtn > button {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #0f0c29;
+  background-color: #3A5195;
+  color: #FAF6F6;
+  font-size: 16px;
+  width: 100%;
+}
+.divForm {
+  flex-grow: 1;
+}
+.divForm > div {
+  width: 90%;
+}
+.divTable {
+  flex-grow: 3;
+}
+table {
+  background-color: #fff;
+  border: 1px solid #b6b6b6;
+  border-radius: 4px;
+  width: 100%;
+  min-width: 100%;
+}
+tr, td, th {
+  padding: 5px;
+  text-align: center;
+}
+img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 4px;
+}
+.btnDelete {
+  width: 100%;
+  padding: 7px ;
+  border-radius: 4px;
+  border: 1px solid #692323;
+  background-color: #D14545;
+  color: #FAF6F6;
+  font-size: 15px;
+}
+.tdImg {
+  width: 100px;
+}
+.tdBtn {
+  width: 100px;
+}
