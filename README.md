@@ -1,4 +1,4 @@
-# car-manager-js-ninja
+# :car: car-manager-js-ninja
 
 **Car Manager is a management system to be used in a car dealership.**
 
@@ -11,8 +11,6 @@ This conclusion project was developed with the knowledge obtained along 33 modul
 - StandardJS
 
 - Express
-
-  
 
 ## Installing and Running:
 
