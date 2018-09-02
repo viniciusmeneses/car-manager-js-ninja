@@ -1,5 +1,5 @@
 {
-  "name": "projeto-final-js-ninja",
+  "name": "car-manager-js-ninja",
   "version": "1.0.0",
   "description": "Conclusion project of course Javascirpt Ninja.",
   "scripts": {
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vini23hot/Projeto-Final-JS-Ninja.git"
+    "url": "git+https://github.com/vini23hot/car-manager-js-ninja.git"
   },
   "author": "Vinicius Meneses",
   "bugs": {
-    "url": "https://github.com/vini23hot/Projeto-Final-JS-Ninja/issues"
+    "url": "https://github.com/vini23hot/car-manager-js-ninja/issues"
   },
-  "homepage": "https://github.com/vini23hot/Projeto-Final-JS-Ninja#readme",
+  "homepage": "https://github.com/vini23hot/car-manager-js-ninja#readme",
   "devDependencies": {
     "http-server": "^0.11.1",
     "npm-run-all": "^4.1.3",
