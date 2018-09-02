@@ -1,7 +1,7 @@
 {
   "name": "car-manager-js-ninja",
   "version": "1.0.0",
-  "description": "Conclusion project of course Javascirpt Ninja.",
+  "description": "Conclusion project of course Javascript Ninja.",
   "scripts": {
     "uglify": "uglifyjs --output js/min/main.min.js --compress --mangle -- js/main.js && uglifyjs --output js/min/dom.min.js --compress --mangle -- js/dom.js",
     "start": "standard --fix && npm run uglify && http-server -c-1 -o -s",
