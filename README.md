@@ -12,6 +12,11 @@ This conclusion project was developed with the knowledge obtained along 33 modul
 
 - Express
 
+<p align="center">
+  <img src="https://imgur.com/MmpqMeg.jpg">
+</p>
+
+
 ## Installing and Running:
 
 Clone this repository, open your terminal in project root folder and run the following commands:
